@@ -1,0 +1,91 @@
+--CREATE DATABASE
+CREATE DATABASE company;
+
+--see the existing databases
+SHOW DATABASES;
+
+--access a particular database
+USE company;
+
+--Show tables in database
+SHOW TABLES; 
+
+
+--Create table Employee
+CREATE TABLE employee 
+(
+      employee_id VARCHAR(10) PRIMARY KEY,
+    employee_name CHAR(20),
+    employee_position VARCHAR(10),
+  employee_email VARCHAR(20),
+  employee_contact INT,
+  employee_address VARCHAR(100)
+);
+
+
+--Create table employeeInfo with constraints
+CREATE TABLE employeeInfo 
+(
+      employee_id VARCHAR(10) PRIMARY KEY,
+    employee_name CHAR(20) NOT NULL,
+    employee_position VARCHAR(10),
+  employee_email VARCHAR(20),
+  employee_contact INT CHECK(employee_contact>10),
+  employee_address VARCHAR(100)
+);
+
+--check specification of table employeeInfo
+DESCRIBE employeeInfo;
+
+--alter a table by adding column
+ALTER TABLE employee ADD dept_id VARCHAR(20);
+
+--check specification of table employee
+DESCRIBE employee;
+
+--alter a table by dropping or deleting a column from table
+ALTER TABLE employee DROP COLUMN dept_id;
+
+--alter a table by modifying the datatype of a particular column of a table
+ALTER TABLE employee MODIFY employee_name VARCHAR(20);
+
+--deleting table structure along with table data
+DROP TABLE employeeInfo;
+
+--deleting table data, keeping the table structure
+TRUNCATE TABLE employee;
+
+--insert values in table employee
+INSERT INTO employee VALUES
+(
+    'ID2',
+    'Rinki',
+    'Developer',
+    'pb@gmail.com',
+    6938,
+    '34 Mapel Street'
+);
+
+
+
+--see all records of a table
+SELECT * FROM employee;
+
+--see specific records of a particular column of a table
+SELECT employee_id, employee_contact FROM employee;
+
+
+--update command
+UPDATE employee SET employee_name='Gita' WHERE employee_id='ID1';
+
+--delete command
+DELETE FROM employee WHERE employee_id='ID2';
+
+--WHERE condition in SELECT
+SELECT * FROM employee WHERE employee_id='ID1';
+
+--LIKE condition in SELECT
+SELECT * FROM employee WHERE employee_name LIKE 'G%';
+
+--deleting all records of the table
+DELETE FROM employee;
